@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function records(){
 
-        return $this->hasMany(WellnessRecord::class);
+        return $this->hasMany('App\WellnessRecord');
 
     }
 }

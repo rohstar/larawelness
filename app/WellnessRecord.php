@@ -13,13 +13,13 @@ class WellnessRecord extends Model
 
     public function user(){
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User');
 
     }
 
     public function questions(){
 
-        return $this->hasMany(WellnessQuestion::class);
+        return $this->hasMany('App\WellnessQuestion', 'user_records');
 
     }
 

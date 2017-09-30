@@ -11,7 +11,7 @@ class WellnessQuestion extends Model
 
     public function record(){
 
-        return $this->belongsTo(WellnessRecord::class);
+        return $this->belongsToMany('App\WellnessRecord', 'user_records');
 
     }
 
