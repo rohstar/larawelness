@@ -50,7 +50,7 @@ class WellnessRecordController extends Controller
         //determine if a daily record exists
         $record = $user->records()->where('date', $date)->first();
 
-        if($record->exists()){
+        if($record != null){
 
             //determine if question has been answered for today's record
             $user_answer = $record->questions()
@@ -60,7 +60,6 @@ class WellnessRecordController extends Controller
 
                 //if not, make a many to many column on user_records
                 $record->questions()->attach($question_id, ['answer_key' => $answer_key]);
-                dd();
 
             } else {
 
@@ -79,6 +78,10 @@ class WellnessRecordController extends Controller
 
             ]);
 
+            $record->questions()->attach($question_id, ['answer_key' => $answer_key]);
+
+
+            $record->save();
         };
 
 
