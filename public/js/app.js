@@ -42055,20 +42055,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -42094,56 +42080,15 @@ var staticRenderFns = [
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "jumbotron" }, [
-            _c("h1", [_vm._v("Hello, world!")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "radio" }, [
-              _c("label", [
-                _c("input", {
-                  attrs: {
-                    type: "radio",
-                    name: "optionsRadios",
-                    id: "optionsRadios1",
-                    value: "option1",
-                    checked: ""
-                  }
-                }),
-                _vm._v(
-                  "\n                        Option one is this and that—be sure to include why it's great\n                    "
-                )
-              ])
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _vm._v("Example Component")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "radio" }, [
-              _c("label", [
-                _c("input", {
-                  attrs: {
-                    type: "radio",
-                    name: "optionsRadios",
-                    id: "optionsRadios2",
-                    value: "option2"
-                  }
-                }),
-                _vm._v(
-                  "\n                        Option two can be something else and selecting it will deselect option one\n                    "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "radio disabled" }, [
-              _c("label", [
-                _c("input", {
-                  attrs: {
-                    type: "radio",
-                    name: "optionsRadios",
-                    id: "optionsRadios3",
-                    value: "option3"
-                  }
-                }),
-                _vm._v(
-                  "\n                        Option three is disabled\n                    "
-                )
-              ])
+            _c("div", { staticClass: "panel-body" }, [
+              _vm._v(
+                "\n                    I'm an example component!\n                "
+              )
             ])
           ])
         ])
@@ -42227,36 +42172,22 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[nam
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            questions: [
-                //                    {
-                //                        id: 1,
-                //                        question: 'hello?',
-                //                        option_1: 1,
-                //                        option_2: 2,
-                //
-                //                    },{
-                //                        id: 2,
-                //                        question: 'hello again?',
-                //                        option_1: 2,
-                //                        option_2: 3,
-                //
-                //                    },
-            ]
+            questions: []
         };
     },
 
     props: ['patientId'],
     created: function created() {
-        console.log(this.patientId);
-
         this.fetchQuestionsForPatient(this.patientId);
     },
 
     methods: {
         fetchQuestionsForPatient: function fetchQuestionsForPatient(id) {
 
+            var vm = this;
             axios.get('/api/user/' + id + '/questions/today').then(function (response) {
-                return console.log(response);
+
+                vm.questions = response.data;
             }).catch(function (response) {
                 return console.log(response.data);
             });
@@ -42276,9 +42207,12 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c(
       "div",
-      { staticClass: "row", staticStyle: { "text-align": "center" } },
-      _vm._l(_vm.questions, function(q) {
-        return _c("question", { key: q.id, attrs: { ques: q } })
+      { staticClass: "row" },
+      _vm._l(_vm.questions, function(item, index) {
+        return _c("question", {
+          key: index,
+          attrs: { ques: item, "patient-id": _vm.patientId }
+        })
       })
     )
   ])
@@ -42310,7 +42244,7 @@ var __vue_template__ = __webpack_require__(50)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-61cef13e"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -42354,13 +42288,13 @@ var content = __webpack_require__(45);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(47)("c0b61e3e", content, false);
+var update = __webpack_require__(47)("79387314", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cef13e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./WellnessQuestionTemplate.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cef13e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./WellnessQuestionTemplate.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cef13e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./WellnessQuestionTemplate.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cef13e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./WellnessQuestionTemplate.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -42378,7 +42312,7 @@ exports = module.exports = __webpack_require__(46)(undefined);
 
 
 // module
-exports.push([module.i, "\nlabel{\n    font-size: 22px;\n}\n.jumbotron{\n    background: darkseagreen;\n    color: white;\n    width: 92%;\n}\n\n\n\n", ""]);
+exports.push([module.i, "\nlabel[data-v-61cef13e] {\n    font-size: 22px;\n}\n.jumbotron[data-v-61cef13e] {\n    background: darkseagreen;\n    color: white;\n    width: 92%;\n}\nh1[data-v-61cef13e] {\n    font-size: 30px;\n}\n\n\n", ""]);
 
 // exports
 
@@ -42759,17 +42693,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            selected: '',
+            answered: false,
+            answer: ''
+        };
     },
 
-    props: ['ques'],
-    mounted: function mounted() {
-        console.log(this.ques);
+    props: ['ques', 'patientId'],
+    created: function created() {
+
+        if (this.ques.answer !== null) {
+            this.selected = this.ques.answer;
+            this.answered = true;
+        }
     },
 
     methods: {
-        submit: function submit() {
-            console.log('answered!');
+        select: function select(option) {
+
+            this.selected = option;
+
+            axios.post('/api/record', {
+
+                'user_id': this.patientId,
+                'question_id': this.ques.info.id,
+                'answer_key': this.selected
+
+            }).then(function (response) {
+
+                console.log(response.data);
+            }).catch(function (response) {
+                return console.log(response.data);
+            });
+
+            this.answered = true;
+        },
+        undo: function undo() {
+            this.answered = false;
         }
     }
 });
@@ -42782,54 +42743,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "jumbotron" }, [
-    _c("h1", [_vm._v(_vm._s(_vm.ques.question))]),
-    _vm._v(" "),
-    _c("div", { staticClass: "radio" }, [
-      _c("label", [
-        _c("input", {
-          attrs: {
-            type: "radio",
-            name: "optionsRadios",
-            id: "optionsRadios1",
-            value: "option1",
-            checked: ""
-          }
-        }),
-        _vm._v("\n           " + _vm._s(_vm.ques.option_1) + "\n        ")
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "radio" }, [
-      _c("label", [
-        _c("input", {
-          attrs: {
-            type: "radio",
-            name: "optionsRadios",
-            id: "optionsRadios2",
-            value: "option2"
-          }
-        }),
-        _vm._v("\n            " + _vm._s(_vm.ques.option_2) + "\n        ")
-      ])
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary btn-lg right",
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              _vm.submit($event)
-            }
-          }
-        },
-        [_vm._v("Submit!")]
-      )
-    ])
+  return _c("div", [
+    !_vm.answered
+      ? _c("div", { staticClass: "jumbotron" }, [
+          _c("h1", [_vm._v(_vm._s(_vm.ques.info.question))]),
+          _vm._v(" "),
+          _c("div", { staticClass: "radio" }, [
+            _c("label", [
+              _c("input", {
+                attrs: {
+                  type: "radio",
+                  name: "optionsRadios",
+                  value: "option_1"
+                },
+                domProps: { checked: _vm.selected === "option_1" },
+                on: {
+                  click: function($event) {
+                    _vm.select("option_1")
+                  }
+                }
+              }),
+              _vm._v(_vm._s(_vm.ques.info.option_1))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "radio" }, [
+            _c("label", [
+              _c("input", {
+                attrs: {
+                  type: "radio",
+                  name: "optionsRadios",
+                  value: "option_2"
+                },
+                domProps: { checked: _vm.selected === "option_2" },
+                on: {
+                  click: function($event) {
+                    _vm.select("option_2")
+                  }
+                }
+              }),
+              _vm._v(_vm._s(_vm.ques.info.option_2))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "radio" }, [
+            _c("label", [
+              _c("input", {
+                attrs: {
+                  type: "radio",
+                  name: "optionsRadios",
+                  value: "option_3"
+                },
+                domProps: { checked: _vm.selected === "option_3" },
+                on: {
+                  click: function($event) {
+                    _vm.select("option_3")
+                  }
+                }
+              }),
+              _vm._v(_vm._s(_vm.ques.info.option_3))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "radio" }, [
+            _c("label", [
+              _c("input", {
+                attrs: {
+                  type: "radio",
+                  name: "optionsRadios",
+                  value: "option_4"
+                },
+                domProps: { checked: _vm.selected === "option_4" },
+                on: {
+                  click: function($event) {
+                    _vm.select("option_4")
+                  }
+                }
+              }),
+              _vm._v(_vm._s(_vm.ques.info.option_4))
+            ])
+          ])
+        ])
+      : _c("div", { staticClass: "jumbotron" }, [
+          _c("h1", [_vm._v(_vm._s(_vm.ques.info.question))]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n            You answered: " +
+                _vm._s(_vm.ques.info[_vm.selected])
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.undo($event)
+                  }
+                }
+              },
+              [_vm._v("Undo")]
+            )
+          ])
+        ])
   ])
 }
 var staticRenderFns = []
