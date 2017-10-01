@@ -11,7 +11,7 @@ class WellnessQuestion extends Model
 
     public function record(){
 
-        return $this->belongsToMany('App\WellnessRecord', 'user_records');
+        return $this->belongsToMany('App\WellnessRecord', 'user_records')->withPivot('answer_key');
 
     }
 
