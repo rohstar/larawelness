@@ -19,7 +19,7 @@ class WellnessRecord extends Model
 
     public function questions(){
 
-        return $this->hasMany('App\WellnessQuestion', 'user_records');
+        return $this->belongsToMany('App\WellnessQuestion', 'user_records');
 
     }
 
