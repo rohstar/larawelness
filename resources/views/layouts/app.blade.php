@@ -29,6 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
