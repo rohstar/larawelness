@@ -48,11 +48,17 @@ class WellnessQuestionsSeeder extends Seeder
             ],
         ];
 
-        foreach ($questions as $q){
+        if(\App\WellnessQuestion::all()->isEmpty()){
 
-            \App\WellnessQuestion::create($q);
+            foreach ($questions as $q){
+
+                \App\WellnessQuestion::create($q);
+
+            }
 
         }
+
+
 
     }
 }
