@@ -21,9 +21,8 @@ Route::prefix('user')->group(function () {
 
     Route::get('{id}/wellness-record/{wellnessRecordId}/{date}', 'WellnessRecordController@show');
 
-////future route to be utilized for patient's wellness history
-//Route::get('user/{id}/history/{question_id}', 'WellnessRecordController@history');
-
     Route::post('{id}/wellness-record', 'WellnessRecordController@store');
+
+    Route::delete('{id}/wellness-record/{wellnessRecordId}/question/{questionId}', 'WellnessRecordController@destroy');
 
 });
