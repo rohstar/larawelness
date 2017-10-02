@@ -64,39 +64,5 @@ class WellnessRecordController extends Controller
 
     }
 
-    public function history($id, $question_id){
-
-        //populate last 7 days as arrays
-        $records = User::find($id)
-            ->records()
-            ->where('date', '>', Carbon::now()->subDays(7))
-            ->pluck('id');
-
-        $hist = DB::table('user_records')
-            ->whereIn('wellness_record_id', $records)
-            ->where('wellness_question_id', $question_id)
-            ->pluck('answer_key')
-            ->toArray();
-
-        $counts = array_count_values($hist);
-
-        $data = [
-
-            'option_1' => $counts['option_1'] ?? 0,
-            'option_2' => $counts['option_2'] ?? 0,
-            'option_3' => $counts['option_3'] ?? 0,
-            'option_4' => $counts['option_4'] ?? 0
-
-        ];
-
-        return [
-
-            'question_keys'=> array_keys($data),
-            'answer_values'=> array_values($data)
-
-        ];
-
-    }
-
 
 }
