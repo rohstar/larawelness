@@ -42185,7 +42185,7 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[nam
         fetchQuestionsForPatient: function fetchQuestionsForPatient(id) {
 
             var vm = this;
-            axios.get('/api/user/' + id + '/questions/today').then(function (response) {
+            axios.get('/api/user/' + id + '/today').then(function (response) {
 
                 vm.questions = response.data;
             }).catch(function (response) {
@@ -42208,10 +42208,10 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row" },
-      _vm._l(_vm.questions, function(item, index) {
+      _vm._l(_vm.questions, function(q) {
         return _c("question", {
-          key: index,
-          attrs: { ques: item, "patient-id": _vm.patientId }
+          key: q.id,
+          attrs: { record: q, "patient-id": _vm.patientId }
         })
       })
     )
@@ -42700,11 +42700,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['ques', 'patientId'],
+    props: ['record', 'patientId'],
     created: function created() {
 
-        if (this.ques.answer !== null) {
-            this.selected = this.ques.answer;
+        console.log(this.record);
+
+        if (this.record.answer !== null) {
+            this.selected = this.record.answer;
             this.answered = true;
         }
     },
@@ -42717,7 +42719,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/api/record', {
 
                 'user_id': this.patientId,
-                'question_id': this.ques.info.id,
+                'question_id': this.record.id,
                 'answer_key': this.selected
 
             }).then(function (response) {
@@ -42746,7 +42748,7 @@ var render = function() {
   return _c("div", [
     !_vm.answered
       ? _c("div", { staticClass: "jumbotron" }, [
-          _c("h1", [_vm._v(_vm._s(_vm.ques.info.question))]),
+          _c("h1", [_vm._v(_vm._s(_vm.record.question))]),
           _vm._v(" "),
           _c("div", { staticClass: "radio" }, [
             _c("label", [
@@ -42763,7 +42765,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v(_vm._s(_vm.ques.info.option_1))
+              _vm._v(_vm._s(_vm.record.option_1))
             ])
           ]),
           _vm._v(" "),
@@ -42782,7 +42784,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v(_vm._s(_vm.ques.info.option_2))
+              _vm._v(_vm._s(_vm.record.option_2))
             ])
           ]),
           _vm._v(" "),
@@ -42801,7 +42803,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v(_vm._s(_vm.ques.info.option_3))
+              _vm._v(_vm._s(_vm.record.option_3))
             ])
           ]),
           _vm._v(" "),
@@ -42820,17 +42822,16 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v(_vm._s(_vm.ques.info.option_4))
+              _vm._v(_vm._s(_vm.record.option_4))
             ])
           ])
         ])
       : _c("div", { staticClass: "jumbotron" }, [
-          _c("h1", [_vm._v(_vm._s(_vm.ques.info.question))]),
+          _c("h1", [_vm._v(_vm._s(_vm.record.question))]),
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "\n            You answered: " +
-                _vm._s(_vm.ques.info[_vm.selected])
+              "\n            You answered: " + _vm._s(_vm.record[_vm.selected])
             ),
             _c("br"),
             _vm._v(" "),
