@@ -37,7 +37,10 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        &nbsp;@auth
+                            <li><a href="{{ route('history', ['userId' => Auth::user()->id]) }}">Wellness History</a></li>
+
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
