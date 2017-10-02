@@ -72807,8 +72807,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['record', 'patientId'],
     created: function created() {
 
-        console.log(this.record);
-
         if (this.record.answer !== null) {
             this.selected = this.record.answer;
             this.answered = true;
@@ -72826,19 +72824,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'question_id': this.record.id,
                 'answer_key': this.selected
 
-            }).then(function (response) {
-
-                console.log(response.data);
-            }).catch(function (response) {
+            }).then(function (response) {}).catch(function (response) {
                 return console.log(response.data);
             });
 
             this.answered = true;
-            this.$emit('answered');
         },
         undo: function undo() {
             this.answered = false;
-            this.$emit('answered');
         }
     }
 });

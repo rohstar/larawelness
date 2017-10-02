@@ -44,8 +44,6 @@
         ],
         created() {
 
-            console.log(this.record);
-
             if (this.record.answer !== null) {
                 this.selected = this.record.answer;
                 this.answered = true;
@@ -66,8 +64,6 @@
                         'answer_key': this.selected
 
                     }).then(function (response) {
-
-                        console.log(response.data);
 
                     })
                     .catch(response => console.log(response.data));
