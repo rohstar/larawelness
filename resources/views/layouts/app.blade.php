@@ -28,7 +28,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
                         {{ config('app.name', 'Laravel') }}
                     </a>
