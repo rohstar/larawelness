@@ -72794,22 +72794,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             selected: '',
             answered: false,
-            answer: ''
+            answer: '',
+            answers: [],
+            answer_keys: []
         };
     },
 
     props: ['record', 'patientId'],
+    mounted: function mounted() {
+
+        this.updateHistory();
+    },
     created: function created() {
 
         if (this.record.answer !== null) {
             this.selected = this.record.answer;
             this.answered = true;
+
+            this.answer_keys = [this.record.option_1, this.record.option_2, this.record.option_3, this.record.option_4];
         }
     },
 
@@ -72829,9 +72838,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
 
             this.answered = true;
+            this.updateHistory();
         },
         undo: function undo() {
+
             this.answered = false;
+            this.selected = '';
+            this.updateHistory();
+        },
+        updateHistory: function updateHistory() {
+
+            var _vm = this;
+
+            axios.get('/api/user/' + this.patientId + '/history/' + this.record.id).then(function (response) {
+
+                _vm.answers = response.data;
+            }).catch(function (response) {
+                return console.log(response.data);
+            });
         }
     }
 });
@@ -72928,26 +72952,39 @@ var render = function() {
       : _c("div", { staticClass: "jumbotron" }, [
           _c("h1", [_vm._v(_vm._s(_vm.record.question))]),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n            You answered: " + _vm._s(_vm.record[_vm.selected])
-            ),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.undo($event)
-                  }
+          _c(
+            "p",
+            [
+              _vm._v(
+                "\n            You answered: " +
+                  _vm._s(_vm.record[_vm.selected])
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("chartjs-horizontal-bar", {
+                attrs: {
+                  datalabel: "Past 7 Days",
+                  labels: _vm.answer_keys,
+                  data: _vm.record.history
                 }
-              },
-              [_vm._v("Undo")]
-            )
-          ])
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.undo($event)
+                    }
+                  }
+                },
+                [_vm._v("Undo")]
+              )
+            ],
+            1
+          )
         ])
   ])
 }

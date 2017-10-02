@@ -35,6 +35,7 @@ class WellnessRecordController extends Controller
         foreach (WellnessQuestion::all() as $q) {
 
             $q->answer = $answered[$q->id] ?? null;
+            $q->history = $this->history($id, $q->id);
             $data[] = $q->toArray();
 
         }
@@ -134,12 +135,7 @@ class WellnessRecordController extends Controller
 
         ];
 
-        return [
-
-            'question_keys'=> array_keys($data),
-            'answer_values'=> array_values($data)
-
-        ];
+        return array_values($data);
 
     }
 
