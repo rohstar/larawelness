@@ -18068,7 +18068,7 @@ window.Vue = __webpack_require__(210);
 
 Vue.use(VueCharts);
 
-Vue.component('example', __webpack_require__(211));
+Vue.component('history', __webpack_require__(211));
 Vue.component('record', __webpack_require__(214));
 Vue.component('question', __webpack_require__(217));
 
@@ -72114,9 +72114,9 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Example.vue"
+Component.options.__file = "resources/assets/js/components/History.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] History.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -72125,9 +72125,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4782b881", Component.options)
+    hotAPI.createRecord("data-v-5f6832aa", Component.options)
   } else {
-    hotAPI.reload("data-v-4782b881", Component.options)
+    hotAPI.reload("data-v-5f6832aa", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -72154,16 +72154,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
+
+    data: function (_data) {
+        function data() {
+            return _data.apply(this, arguments);
+        }
+
+        data.toString = function () {
+            return _data.toString();
+        };
+
+        return data;
+    }(function () {
+
+        return {
+            data: data
+        };
+    }),
+
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -72174,38 +72185,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "panel-body" },
+        _vm._l(_vm.data, function(item, key) {
+          return _c("chartjs-bar", {
+            attrs: {
+              datalabel: key,
+              labels: Object.keys(item),
+              scalesdisplay: false,
+              data: Object.values(item)
+            }
+          })
+        })
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4782b881", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5f6832aa", module.exports)
   }
 }
 

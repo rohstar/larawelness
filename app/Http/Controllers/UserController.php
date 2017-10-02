@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\WellnessRecord;
+use App\WellnessQuestion;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JavaScript;
 
 class UserController extends Controller
 {
@@ -22,25 +22,31 @@ class UserController extends Controller
             ->whereIn('wellness_record_id', $records)
             ->get();
 
-        dd($hist);
+        $data = [];
 
-        $counts = array_count_values($hist);
+        foreach ($hist as $record){
 
-        $data = [
+            $q = WellnessQuestion::find($record->wellness_question_id);
 
-            'option_1' => $counts['option_1'] ?? 0,
-            'option_2' => $counts['option_2'] ?? 0,
-            'option_3' => $counts['option_3'] ?? 0,
-            'option_4' => $counts['option_4'] ?? 0
+            $option = $record->answer_key;
 
-        ];
+            if(isset($data[$q->question][$q->$option])){
 
-        return [
+                $data[$q->question][$q->$option]++;
 
-            'question_keys'=> array_keys($data),
-            'answer_values'=> array_values($data)
+            } else {
 
-        ];
+                $data[$q->question][$q->$option] = 1;
+
+            }
+
+        }
+
+        JavaScript::put([
+            'data' => $data
+        ]);
+
+        return view('history');
 
     }
 

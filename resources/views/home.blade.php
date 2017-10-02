@@ -6,7 +6,6 @@
             <div class="col-md-12">
                 <div class="page-header">
                     <h1 style="font-size: 45px">Wellness Questions {{\Carbon\Carbon::now()->toDateString()}}
-                        <small></small>
                     </h1>
                 </div>
                 <record :patient-id="{{auth()->user()->id}}" :record="{{$record}}"></record>

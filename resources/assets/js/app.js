@@ -20,7 +20,7 @@ window.Vue = require('vue');
 
 Vue.use(VueCharts);
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('history', require('./components/History.vue'));
 Vue.component('record', require('./components/WellnessRecord.vue'));
 Vue.component('question', require('./components/WellnessQuestionTemplate.vue'));
 
