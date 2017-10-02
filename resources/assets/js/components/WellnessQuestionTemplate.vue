@@ -75,6 +75,7 @@
                 this.answered = true;
 
             },
+
             undo() {
                 this.answered = false
             }
