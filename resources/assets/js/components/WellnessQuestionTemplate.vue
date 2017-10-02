@@ -87,7 +87,9 @@
                 })
                     .catch(response => console.log(response.data));
 
-                this.answered = false
+                this.answered = false;
+                this.selected = '';
+
             }
         }
     }
