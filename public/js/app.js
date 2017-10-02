@@ -72280,16 +72280,18 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[nam
         };
     },
 
-    props: ['patientId'],
+    props: ['patientId', 'record'],
     created: function created() {
-        this.fetchQuestionsForPatient(this.patientId);
+        this.fetchQuestionsForRecord(this.patientId, this.record.id);
     },
 
     methods: {
-        fetchQuestionsForPatient: function fetchQuestionsForPatient(id) {
+        fetchQuestionsForRecord: function fetchQuestionsForRecord(id, recordId) {
 
+            var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
             var vm = this;
-            axios.get('/api/user/' + id + '/today').then(function (response) {
+
+            axios.get('/api/user/' + id + '/wellness-record/' + recordId + '/' + utc).then(function (response) {
 
                 vm.questions = response.data;
             }).catch(function (response) {
@@ -72818,7 +72820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.selected = option;
 
-            axios.post('/api/record', {
+            axios.post('/api/user/' + this.patientId + '/wellness-record', {
 
                 'user_id': this.patientId,
                 'question_id': this.record.id,

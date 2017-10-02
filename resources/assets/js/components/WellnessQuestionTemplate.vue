@@ -56,7 +56,7 @@
 
                 this.selected = option;
 
-                axios.post('/api/record',
+                axios.post('/api/user/' + this.patientId + '/wellness-record',
                     {
 
                         'user_id': this.patientId,

@@ -17,9 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('user/{id}/today', 'WellnessRecordController@show');
+Route::prefix('user')->group(function () {
 
-//future route to be utilized for patient's wellness history
-Route::get('user/{id}/history/{question_id}', 'WellnessRecordController@history');
+    Route::get('{id}/wellness-record/{wellnessRecordId}/{date}', 'WellnessRecordController@show');
 
-Route::post('record', 'WellnessRecordController@create');
+////future route to be utilized for patient's wellness history
+//Route::get('user/{id}/history/{question_id}', 'WellnessRecordController@history');
+
+    Route::post('{id}/wellness-record', 'WellnessRecordController@store');
+
+});

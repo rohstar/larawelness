@@ -12,13 +12,15 @@ use Illuminate\Support\Facades\DB;
 class WellnessRecordController extends Controller
 {
 
-    public function show($id)
+    public function show($id, $wellnessRecordId, $date)
     {
 
+        $wellness_record = WellnessRecord::find($wellnessRecordId);
+
         //Get the wellness record for user with $id on today's date
-        $record = User::find($id)
+        $record = User::find($wellness_record->user_id)
             ->records()
-            ->where('date', Carbon::now()->toDateString())
+            ->where('date', $date)
             ->first();
 
         //get all the answered questions for today
@@ -44,7 +46,7 @@ class WellnessRecordController extends Controller
 
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
 
         //assign input to variables

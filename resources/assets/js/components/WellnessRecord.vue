@@ -17,17 +17,20 @@
             }
         },
         props: [
-            'patientId'
+            'patientId',
+            'record'
         ],
         created() {
-            this.fetchQuestionsForPatient(this.patientId);
+            this.fetchQuestionsForRecord(this.patientId, this.record.id);
         },
         methods: {
 
-            fetchQuestionsForPatient(id) {
+            fetchQuestionsForRecord(id, recordId) {
 
+                let utc = new Date().toJSON().slice(0,10).replace(/-/g,'-');
                 let vm = this;
-                axios.get('/api/user/' + id + '/today')
+
+                axios.get('/api/user/' + id + '/wellness-record/' + recordId + '/' + utc)
                     .then(function (response) {
 
                         vm.questions = response.data

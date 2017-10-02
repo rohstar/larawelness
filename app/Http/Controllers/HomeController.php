@@ -41,7 +41,6 @@ class HomeController extends Controller
             ]);
 
         }
-        dd($record);
 
         return view('home', ['record' => $record]);
 

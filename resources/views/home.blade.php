@@ -9,9 +9,8 @@
                         <small></small>
                     </h1>
                 </div>
-                <record :patient-id="{{auth()->user()->id}}"></record>
+                <record :patient-id="{{auth()->user()->id}}" :record="{{$record}}"></record>
             </div>
         </div>
-    </div>
     </div>
 @endsection
