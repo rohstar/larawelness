@@ -14,27 +14,31 @@ class WellnessRecordController extends Controller
 
     public function show($id){
 
-        $record = User::find($id)->records()->where('date', Carbon::now()->toDateString())->first()['id'];
+        //Get the wellness record for user with $id on today's date
+        $record = User::find($id)
+            ->records()
+            ->where('date', Carbon::now()->toDateString())
+            ->first();
 
-        $answered = DB::table('user_records')->where('wellness_record_id', $record)->pluck('answer_key','wellness_question_id')->toArray();
+        //get all the answered questions for today
+        $answered = DB::table('user_records')
+            ->where('wellness_record_id', $record['id'])
+            //we'll retrieve the wellness question id and answer as a key-val pair
+            ->pluck('answer_key','wellness_question_id')
+            ->toArray();
 
+        //packet init
         $data = [];
 
+        //loop through the available questions and add user response to question object
         foreach (WellnessQuestion::all() as $q){
 
-            $data[$q->id]['info'] = $q;
-
-            if(isset($answered[$q->id])){
-                $data[$q->id]['answer'] = $answered[$q->id];
-                $data[$q->id]['answer'] = $answered[$q->id];
-            } else {
-                $data[$q->id]['answer'] = null;
-
-            }
+            $q->answer = $answered[$q->id] ?? null;
+            $data[] = $q->toArray();
 
         }
 
-        //returns all questions for the day and whether they were answered.
+        //returns all questions and user's answers, if any
         return $data;
 
     }

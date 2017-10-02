@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <question v-for="(item, index) in questions" :key="index" :ques="item" :patient-id="patientId"></question>
+            <question v-for="q in questions" :key="q.id" :record="q" :patient-id="patientId"></question>
         </div>
     </div>
 </template>
@@ -27,7 +27,7 @@
             fetchQuestionsForPatient(id) {
 
                 let vm = this;
-                axios.get('/api/user/' + id + '/questions/today')
+                axios.get('/api/user/' + id + '/today')
                     .then(function (response) {
 
                         vm.questions = response.data

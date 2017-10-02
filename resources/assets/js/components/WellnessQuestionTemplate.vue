@@ -1,28 +1,28 @@
 <template>
     <div>
         <div v-if="!answered" class="jumbotron">
-            <h1>{{ques.info.question}}</h1>
+            <h1>{{record.question}}</h1>
             <div class="radio">
                 <label><input type="radio" name="optionsRadios" value="option_1" v-on:click="select('option_1')"
-                              :checked="selected === 'option_1'">{{ques.info.option_1}}</label>
+                              :checked="selected === 'option_1'">{{record.option_1}}</label>
             </div>
             <div class="radio">
                 <label><input type="radio" name="optionsRadios" value="option_2" v-on:click="select('option_2')"
-                              :checked="selected === 'option_2'">{{ques.info.option_2}}</label>
+                              :checked="selected === 'option_2'">{{record.option_2}}</label>
             </div>
             <div class="radio">
                 <label><input type="radio" name="optionsRadios" value="option_3" v-on:click="select('option_3')"
-                              :checked="selected === 'option_3'">{{ques.info.option_3}}</label>
+                              :checked="selected === 'option_3'">{{record.option_3}}</label>
             </div>
             <div class="radio">
                 <label><input type="radio" name="optionsRadios" value="option_4" v-on:click="select('option_4')"
-                              :checked="selected === 'option_4'">{{ques.info.option_4}}</label>
+                              :checked="selected === 'option_4'">{{record.option_4}}</label>
             </div>
         </div>
         <div v-else class="jumbotron">
-            <h1>{{ques.info.question}}</h1>
+            <h1>{{record.question}}</h1>
             <p>
-                You answered: {{ques.info[selected]}}<br/>
+                You answered: {{record[selected]}}<br/>
                 <button class="btn btn-default" v-on:click.prevent="undo">Undo</button>
             </p>
         </div>
@@ -39,13 +39,15 @@
             }
         },
         props: [
-            'ques',
+            'record',
             'patientId'
         ],
         created() {
 
-            if (this.ques.answer !== null) {
-                this.selected = this.ques.answer;
+            console.log(this.record);
+
+            if (this.record.answer !== null) {
+                this.selected = this.record.answer;
                 this.answered = true;
 
             }
@@ -60,7 +62,7 @@
                     {
 
                         'user_id': this.patientId,
-                        'question_id': this.ques.info.id,
+                        'question_id': this.record.id,
                         'answer_key': this.selected
 
                     }).then(function (response) {
