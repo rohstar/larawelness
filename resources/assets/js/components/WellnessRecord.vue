@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <question v-for="q in questions" :key="q.id" :record="q" :patient-id="patientId"></question>
+            <question v-for="q in questions" :key="q.id" :record="q" :user-record="record.id" :patient-id="patientId"></question>
         </div>
     </div>
 </template>

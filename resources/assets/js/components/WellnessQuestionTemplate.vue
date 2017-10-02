@@ -40,6 +40,7 @@
         },
         props: [
             'record',
+            'userRecord',
             'patientId'
         ],
         created() {
@@ -73,6 +74,19 @@
             },
 
             undo() {
+
+                axios.delete('/api/user/' + this.patientId + '/wellness-record/' + this.userRecord + '/question/' + this.record.id,
+                    {
+
+                        'user_id': this.patientId,
+                        'question_id': this.record.id,
+                        'answer_key': this.selected
+
+                    }).then(function (response) {
+
+                })
+                    .catch(response => console.log(response.data));
+
                 this.answered = false
             }
         }
