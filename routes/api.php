@@ -19,4 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('user/{id}/today', 'WellnessRecordController@show');
 
-Route::post('record/', 'WellnessRecordController@create');
+//future route to be utilized for patient's wellness history
+Route::get('user/{id}/history/{question_id}', 'WellnessRecordController@history');
+
+Route::post('record', 'WellnessRecordController@create');
