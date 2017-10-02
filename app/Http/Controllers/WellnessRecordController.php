@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\DB;
 class WellnessRecordController extends Controller
 {
 
-    public function show($id, $wellnessRecordId, $date)
+    public function show($userId, $wellnessRecordId, $date)
     {
 
         $wellness_record = WellnessRecord::find($wellnessRecordId);
 
-        //Get the wellness record for user with $id on today's date
+        //Get the wellness record for user on date
         $record = User::find($wellness_record->user_id)
             ->records()
             ->where('date', $date)
@@ -108,6 +108,19 @@ class WellnessRecordController extends Controller
             'success' => true
         ];
 
+
+    }
+
+    public function destroy($userId, $wellnessRecordId, $questionId){
+
+        DB::table('user_records')
+            ->where('wellness_question_id', $questionId)
+            ->where('wellness_record_id', $wellnessRecordId)
+            ->delete();
+
+        return [
+            'success' => true
+        ];
 
     }
 

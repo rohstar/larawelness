@@ -72317,7 +72317,11 @@ var render = function() {
       _vm._l(_vm.questions, function(q) {
         return _c("question", {
           key: q.id,
-          attrs: { record: q, "patient-id": _vm.patientId }
+          attrs: {
+            record: q,
+            "user-record": _vm.record.id,
+            "patient-id": _vm.patientId
+          }
         })
       })
     )
@@ -72806,7 +72810,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['record', 'patientId'],
+    props: ['record', 'userRecord', 'patientId'],
     created: function created() {
 
         if (this.record.answer !== null) {
@@ -72833,6 +72837,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.answered = true;
         },
         undo: function undo() {
+
+            axios.delete('/api/user/' + this.patientId + '/wellness-record/' + this.userRecord + '/question/' + this.record.id, {
+
+                'user_id': this.patientId,
+                'question_id': this.record.id,
+                'answer_key': this.selected
+
+            }).then(function (response) {}).catch(function (response) {
+                return console.log(response.data);
+            });
+
             this.answered = false;
         }
     }
