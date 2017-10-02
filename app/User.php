@@ -32,4 +32,10 @@ class User extends Authenticatable
         return $this->hasMany('App\WellnessRecord');
 
     }
+
+    public function getRecordsFromDate($date){
+        return $this->records()
+            ->where('date', '>=', $date)
+            ->pluck('id');
+    }
 }
