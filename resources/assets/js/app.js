@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+require('chart.js');
+require('hchs-vue-charts');
 
 window.Vue = require('vue');
 
@@ -14,6 +16,9 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
+Vue.use(VueCharts);
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('record', require('./components/WellnessRecord.vue'));
