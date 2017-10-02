@@ -13,6 +13,12 @@ class UserController extends Controller
 
     public function history($id){
 
+        if(!auth()->check()){
+
+            return redirect()->route('home');
+
+        }
+
         $user = User::find($id);
 
         //populate last 7 days as arrays

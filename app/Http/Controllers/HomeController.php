@@ -26,6 +26,12 @@ class HomeController extends Controller
     public function index()
     {
 
+        if(!auth()->check()){
+
+            return redirect()->route('home');
+
+        }
+
         $record = auth()->user()
             ->records()
             ->where('date', Carbon::now()->toDateString())
