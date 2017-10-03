@@ -72120,7 +72120,7 @@ if (Component.options.functional) {console.error("[vue-loader] History.vue: func
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
@@ -72210,7 +72210,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5f6832aa", module.exports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-5f6832aa", module.exports)
   }
 }
 
@@ -72243,7 +72243,7 @@ if (Component.options.functional) {console.error("[vue-loader] WellnessRecord.vu
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
@@ -72338,7 +72338,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e4b283e2", module.exports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-e4b283e2", module.exports)
   }
 }
 
@@ -72375,7 +72375,7 @@ if (Component.options.functional) {console.error("[vue-loader] WellnessQuestionT
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
@@ -72804,7 +72804,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -72877,7 +72876,7 @@ var render = function() {
               _c("input", {
                 attrs: {
                   type: "radio",
-                  name: "optionsRadios",
+                  name: "question_radio",
                   value: "option_1"
                 },
                 domProps: { checked: _vm.selected === "option_1" },
@@ -72896,7 +72895,7 @@ var render = function() {
               _c("input", {
                 attrs: {
                   type: "radio",
-                  name: "optionsRadios",
+                  name: "question_radio",
                   value: "option_2"
                 },
                 domProps: { checked: _vm.selected === "option_2" },
@@ -72915,7 +72914,7 @@ var render = function() {
               _c("input", {
                 attrs: {
                   type: "radio",
-                  name: "optionsRadios",
+                  name: "question_radio",
                   value: "option_3"
                 },
                 domProps: { checked: _vm.selected === "option_3" },
@@ -72934,7 +72933,7 @@ var render = function() {
               _c("input", {
                 attrs: {
                   type: "radio",
-                  name: "optionsRadios",
+                  name: "question_radio",
                   value: "option_4"
                 },
                 domProps: { checked: _vm.selected === "option_4" },
@@ -72952,9 +72951,7 @@ var render = function() {
           _c("h1", [_vm._v(_vm._s(_vm.record.question))]),
           _vm._v(" "),
           _c("p", [
-            _vm._v(
-              "\n            You answered: " + _vm._s(_vm.record[_vm.selected])
-            ),
+            _vm._v("You answered: " + _vm._s(_vm.record[_vm.selected])),
             _c("br"),
             _vm._v(" "),
             _c(
@@ -72980,7 +72977,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-61cef13e", module.exports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-61cef13e", module.exports)
   }
 }
 
